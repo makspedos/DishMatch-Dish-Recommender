@@ -1,11 +1,11 @@
 from flask import Flask, render_template, request
-app = Flask(__name__)
+from culinary.culinary import culinary_bp
 
-
-@app.route('/', methods=['GET'])
-def form_find():
-    value = request.args.get('search-value')
-    return render_template('html/index.html', value=value)
+def create_app():
+    app = Flask(__name__)
+    app.register_blueprint(culinary_bp, url_prefix='')
+    return app
 
 if __name__ == '__main__':
+    app = create_app()
     app.run(debug=True)

@@ -3,7 +3,7 @@
     <h1 class="text-center">Hello, recommendation system ! </h1>
     {% if value %}
         <p class="value">{{ value }}</p>
-        <a href="{{ url_for('form_find')}}">Return to the main page</a>
+        <a href="{{ url_for('culinary.form_find')}}">Return to the main page</a>
     {% else %}
     <form method="get">
         <div class="form-group">
