@@ -1,0 +1,18 @@
+p.value{
+    font-size: 32px;
+}
+
+.form-group{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 350px;
+
+}
+input.form-control {
+    width: 80%;
+}
+label {
+    font-size: 1.2rem;  /* Розмір шрифта для мітки */
+    margin-bottom: 10px;  /* Відступ між міткою та полем вводу */
+}
