@@ -1,14 +1,29 @@
 {% extends 'html/base.html' %}
 {% block content %}
-    <h1 class="text-center">Hello, recommendation system ! </h1>
     {% if value %}
-        <p class="value">{{ value }}</p>
-        <a href="{{ url_for('culinary.form_find')}}">Return to the main page</a>
+        <div class="caption-query">
+            <h1 class="text-center">Found by query: {{ value }}</h1>
+        </div>
+        <div>
+            <ol>
+                {% for recipe in recipes %}
+                <li class="result-li">
+                    <p class="value">{{ recipe.title }}</p>
+                    <img src="{{ recipe.image }}" alt="{{ recipe.title }}" class="recipe-image">
+                </li>
+            {% endfor %}
+            </ol>
+            <p class="value">We recommend you to examine</p>
+            <ol class="recommend-ol">
+                <li class="result-li"><p class="value">{{ value }}</p></li>
+            </ol>
+            <a class="button" href="{{ url_for('culinary.form_find')}}">Return to the main page</a>
+        </div>
     {% else %}
+    <h1 class="text-center">Find available recipes </h1>
     <form method="get">
         <div class="form-group">
             <label for="search-value">Enter item to find</label>
-
             <input class="form-control" type="text" name="search-value" placeholder="Enter there">
             <button class="btn btn-primary" type="submit">Find</button>
         </div>

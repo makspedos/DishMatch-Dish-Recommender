@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request
 from culinary.culinary import culinary_bp
 
+
+
 def create_app():
     app = Flask(__name__)
     app.register_blueprint(culinary_bp, url_prefix='')

@@ -1,3 +1,4 @@
 .idea
 __pycache__
 culinary/__pycache__
+culinary/variables.py

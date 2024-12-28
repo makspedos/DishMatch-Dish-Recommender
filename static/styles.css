@@ -1,18 +1,110 @@
-p.value{
-    font-size: 32px;
+/* Загальні стилі для всього документа */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+    background-color: #f0f8ff; /* Легкий фон */
 }
 
-.form-group{
+/* Головний контейнер сторінки */
+.main-page {
+    background-color: #2e8b57; /* Глибокий зелений фон */
+    min-height: 100%;
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin-top: 350px;
+    align-items: baseline;
+    padding: 20px;
+}
 
+/* Основний контент */
+.container {
+    background: #ffffff; /* Білий фон */
+    border-radius: 10px; /* Згладжені кути */
+    padding: 30px;
+    max-width: 800px;
+    width: 100%;
 }
+
+/* Центрування тексту */
+.text-center {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Поле вводу */
 input.form-control {
-    width: 80%;
+    width: 100%;
+    max-width: 500px;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-bottom: 20px;
 }
+
+/* Мітки */
 label {
-    font-size: 1.2rem;  /* Розмір шрифта для мітки */
-    margin-bottom: 10px;  /* Відступ між міткою та полем вводу */
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Кнопка пошуку */
+button.btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Результати */
+ol {
+    padding: 0;
+    margin: 20px 0;
+}
+
+ol.recommend-ol{
+    list-style: none;
+}
+li.result-li {
+    font-size: 1.2rem;
+    color: #555;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+}
+
+
+/* Кнопка "Return to the main page" */
+a.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    float: right;
+    transition: background-color 0.3s ease;
+}
+
+a.button:hover {
+    background-color: #0056b3;
+    color: #f9f9f9;
+}
+
+/* Заголовки */
+.caption-query h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 10px;
 }
