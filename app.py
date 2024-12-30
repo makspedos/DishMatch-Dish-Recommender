@@ -1,7 +1,5 @@
-from flask import Flask, render_template, request
+from flask import Flask
 from culinary.culinary import culinary_bp
-
-
 
 def create_app():
     app = Flask(__name__)

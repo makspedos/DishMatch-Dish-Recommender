@@ -10,6 +10,7 @@
                 <li class="result-li">
                     <p class="value">{{ recipe.title }}</p>
                     <img src="{{ recipe.image }}" alt="{{ recipe.title }}" class="recipe-image">
+                    <a class="button" href="{{ url_for('culinary.dish_page', dish_id=recipe.id)}}">Watch dish</a>
                 </li>
             {% endfor %}
             </ol>
