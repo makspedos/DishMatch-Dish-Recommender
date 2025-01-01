@@ -1,13 +1,28 @@
 {% extends 'html/base.html' %}
 {% block content %}
 	<div class="product-detail">
-        <h1>{{ dish.title }}</h1>
+        <h1 class="text-center">{{ dish.title }}</h1>
         {% if ingredients %}
+            <h5>Ingredients</h5>
+            <table class="styled-table">
+                <thead>
+            <tr>
+                <th>Ingredient name</th>
+                <th>Amount</th>
+                <th>Unit</th>
+                <th>Description</th>
+            </tr>
+                </thead>
             {% for item in ingredients %}
-                <ol>
-                    <li>{{ item.name }}</li>
-                </ol>
+                <tr>
+                    <td>{{ item.name|capitalize }}</td>
+                    <td>{{ item.amount }}</td>
+                    <td>{{ item.unit }}</td>
+                    <td>{{ item.original }}</td>
+                </tr>
             {% endfor %}
+            </table>
         {% endif %}
+    <a class="button" href="{{ previous_url }}">Return to search</a>
     </div>
 {% endblock %}

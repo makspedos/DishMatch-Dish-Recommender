@@ -22,7 +22,7 @@ html, body {
     background: #ffffff; /* Білий фон */
     border-radius: 10px; /* Згладжені кути */
     padding: 30px;
-    max-width: 800px;
+    max-width: 1000px;
     width: 100%;
 }
 
@@ -107,4 +107,8 @@ a.button:hover {
     font-size: 2rem;
     color: #333;
     margin-bottom: 10px;
+}
+
+h5{
+    margin-top: 50px;
 }
