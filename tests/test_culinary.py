@@ -1,5 +1,6 @@
-import pytest
+"""Tests are implemented in a straitened form due to limited access to API"""
 
+import pytest
 from culinary.culinary_api import culinary_api
 
 
