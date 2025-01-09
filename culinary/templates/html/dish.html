@@ -23,6 +23,9 @@
             {% endfor %}
             </table>
         {% endif %}
-    <a class="button" href="{{ previous_url }}">Return to search</a>
+    <form method="post" action="{{ previous_url }}">
+        <input type="hidden" name="interested_dish" value="{{ dish.dish_type }}">
+        <button type="submit" class="btn btn-primary">Return to search</button>
+    </form>
     </div>
 {% endblock %}

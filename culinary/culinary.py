@@ -1,28 +1,29 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, session
 from .culinary_api.culinary_api import *
-from .recommendation import RecommendAlgorithm
+from database import connect_db
+from uuid import uuid4
 
 culinary_bp = Blueprint('culinary', __name__, template_folder='templates', static_folder='static')
+db = connect_db()
 
-
-@culinary_bp.route('/', methods=['GET'])
+@culinary_bp.route('/', methods=['GET', 'POST'])
 def form_find():
     value = request.args.get('search-value')
     #recipes = get_mock_result()
-    recommended_recipes = []
     recipes = search_recipe(value)
 
-    if value:
-        recommended_title = RecommendAlgorithm()
-        recipes_list = [recipe['title'] for recipe in recipes]
-        result_dish_titles = recommended_title.recommend_by_title(value, recipes_list)
-        print(result_dish_titles)
-        for dish in recipes:
-            if dish['title'] in result_dish_titles:
-                recommended_recipes.append(dish)
-        recipes= recipes[:5]
+    if request.method == 'POST':
+        interested_type = request.form.get('interested_dish')
+        print(f'Type: {interested_type}')
+        if 'session_id' not in session:
+            session['session_id'] = str(uuid4())
+        session_id = session.get('session_id', 'anonymous')
 
-    return render_template('html/index.html', value=value, recipes=recipes, recommended_recipes=recommended_recipes)
+        db.user.update_one(
+            {'session_id':session_id},
+            {'$push':{'interested_dish':interested_type}},upsert=True)
+
+    return render_template('html/index.html', value=value, recipes=recipes)
 
 
 @culinary_bp.route('/<string:dish_id>/', methods=['GET'])

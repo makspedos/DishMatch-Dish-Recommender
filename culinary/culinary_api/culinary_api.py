@@ -3,7 +3,7 @@ from culinary.variables import ENV_VARS
 
 API_KEY = ENV_VARS['API_KEY']
 
-def search_recipies_by_ingredients(query,number=10):
+def search_recipies_by_ingredients(query,number=5):
     url = f'https://api.spoonacular.com/recipes/findByIngredients'
     params = {
         'apiKey': API_KEY,
@@ -63,6 +63,7 @@ def get_recipe_by_id(id):
                 for ing in data.get("extendedIngredients", [])
             ],
             "image": data.get("image"),
+            "dish_type":data.get("dishTypes"),
         }
         return recipe_details
     except Exception as e:

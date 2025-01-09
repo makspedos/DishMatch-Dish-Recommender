@@ -15,17 +15,6 @@
             {% endfor %}
             </ol>
             <p class="value">We also recommend you to examine</p>
-            <ol>
-            {% if recommended_recipes %}
-                {% for dish in recommended_recipes %}
-                    <li class="result-li">
-                        <p class="value">{{ dish.title }}</p>
-                        <img src="{{ dish.image }}" alt="{{ dish.title }}" class="recipe-image">
-                        <a class="button" href="{{ url_for('culinary.dish_page', dish_id=dish.id)}}">Watch dish</a>
-                    </li>
-                {% endfor %}
-            {% endif %}
-            </ol>
             <ol class="recommend-ol">
                 <li class="result-li"><p class="value">{{ value }}</p></li>
             </ol>
