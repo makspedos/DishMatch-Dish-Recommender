@@ -3,7 +3,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 
 class RecommendAlgorithm:
-    def recommend_by_title(self, dish_title, title_list):
+    def cosine_recommend_by_title(self, dish_title, title_list):
         if len(title_list) >1 and dish_title:
             title_list.append(dish_title)
             vectorizer = TfidfVectorizer()
@@ -14,6 +14,9 @@ class RecommendAlgorithm:
             sorted_indices = similarities.argsort()[::-1][:3]
             recommendation = [title_list[i] for i in sorted_indices]
             return recommendation
+
+def get_user_preferences(user):
+    return
 
 
 if __name__ == '__main__':
@@ -30,4 +33,4 @@ if __name__ == '__main__':
         ]
     value = 'Beef'
     recommended_title = RecommendAlgorithm()
-    recommended_title.recommend_by_title(value, recipes)
+    recommended_title.cosine_recommend_by_title(value, recipes)

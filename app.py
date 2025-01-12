@@ -1,6 +1,5 @@
 from flask import Flask
 from culinary.culinary import culinary_bp
-from database import connect_db
 from culinary.variables import ENV_VARS
 
 def create_app():

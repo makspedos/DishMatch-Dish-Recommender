@@ -54,8 +54,6 @@ def get_recipe_by_id(id):
 
         recipe_details = {
             "title": data.get("title"),
-            "summary": data.get("summary"),
-            "servings": data.get("servings"),
             "ready_in_minutes": data.get("readyInMinutes"),
             "number_of_ingredients": len(data.get("extendedIngredients", [])),
             "ingredients": [
