@@ -17,10 +17,15 @@ class DatabaseManipulator:
         db = client.recommendationdb
         return db
 
-    def create_or_update_user(self, session_id, user_data):
-        self.db.user.update_one(
-            {'session_id': session_id},
-            {'$push': {'user_dish': user_data}}, upsert=True)
+    def create_or_update_user(self, session_id, user_data=None, recommended_products=None):
+        if recommended_products:
+            self.db.user.update_one(
+                {'session_id': session_id},
+                {'$push': {'recommended_products': recommended_products}}, upsert=True)
+        else:
+            self.db.user.update_one(
+                {'session_id': session_id},
+                {'$push': {'user_dish': user_data}}, upsert=True)
 
     def find_user(self, session_id):
         user_session = self.db.user.find_one({'session_id': session_id})

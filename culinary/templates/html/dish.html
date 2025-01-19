@@ -25,8 +25,6 @@
         {% endif %}
     <form method="post" action="{{ previous_url }}">
         <input type="hidden" name="ingredients_dish" value="{{ ingredients }}">
-        <input type="hidden" name="cooktime_dish" value="{{ dish.ready_in_minutes }}">
-        <input type="hidden" name="dish_type" value="{{ dish.dish_type }}">
         <button type="submit" class="btn btn-primary">Return to search</button>
     </form>
     </div>
