@@ -45,12 +45,15 @@ class AssociationRecommender:
         random.shuffle(ingredients)
         antecedents_count = Counter(ingredients)
         antecedents_count = antecedents_count.most_common()[:3]
-        return antecedents_count
+        result_ingredients = [ingredient[0] for ingredient in antecedents_count]
+        return result_ingredients
 
     def get_user_preferences(self, user):
         ingredients = []
         for dish in user['user_dish']:
-            ingredients.append(dish['ingredients'])
+            for ingredient, item in dish.items():
+                ingredients.append(item)
+        print(ingredients)
         result = self.template_method(ingredients)
         return result
 

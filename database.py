@@ -1,4 +1,4 @@
-from pymongo import MongoClient
+from pymongo import MongoClient, ReturnDocument
 from culinary.variables import ENV_VARS
 
 class DatabaseManipulator:
@@ -18,15 +18,39 @@ class DatabaseManipulator:
         return db
 
     def create_or_update_user(self, session_id, user_data=None, recommended_products=None):
+        update_query = {}
+
         if recommended_products:
+            update_query["recommended_products"] = recommended_products
+
+        if user_data:
             self.db.user.update_one(
-                {'session_id': session_id},
-                {'$push': {'recommended_products': recommended_products}}, upsert=True)
-        else:
-            self.db.user.update_one(
-                {'session_id': session_id},
-                {'$push': {'user_dish': user_data}}, upsert=True)
+                {"session_id": session_id},
+                {"$push": {"user_dish": user_data}},
+                upsert=True
+            )
+        updated_user = self.db.user.find_one_and_update(
+            {"session_id": session_id},
+            {"$set": update_query},
+            upsert=True,
+            return_document=ReturnDocument.AFTER
+        )
+        if len(updated_user['user_dish']) > 5:
+            self.delete_ingredients(updated_user)
+        return updated_user
+
 
     def find_user(self, session_id):
         user_session = self.db.user.find_one({'session_id': session_id})
+        created_user = user_session is True
+        if created_user:
+            if len(user_session['user_dish'])>5:
+                self.delete_ingredients(user_session)
         return user_session
+
+    def delete_ingredients(self, user):
+        user_id = user['_id']
+        self.db.user.update_one(
+            {'_id': user_id},
+            {'$pop': {'user_dish': -1}}
+        )
