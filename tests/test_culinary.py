@@ -3,7 +3,6 @@
 import pytest
 from culinary.culinary_api import culinary_api
 
-
 def test_form_find(client):
     response = client.get('/?search-value=Hi')
     assert response.status_code == 200
@@ -30,10 +29,3 @@ def test_search_recipes(query, number, expected):
         assert expected == search_result
 
 
-# @pytest.mark.parametrize('id, expected', [(555, 'ingredients'), (9999999, None)])
-# def test_get_recipy_by_id(id, expected):
-#     searched_dish = culinary_api.get_recipe_by_id(id)
-#     if len(searched_dish)>0:
-#         assert expected in searched_dish
-#     else:
-#         assert searched_dish == expected

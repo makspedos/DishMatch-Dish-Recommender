@@ -15,6 +15,7 @@ def form_find():
     value = request.args.get('search-value')
     #recipes = get_mock_dishes() # Use this line if you want to use mock dishes
     recipes = search_recipe(value)
+    print(recipes)
     session_id = session.get('session_id', str(uuid4()))
     session['session_id'] = session_id
 
@@ -33,9 +34,9 @@ def form_find():
                 recommender = AssociationRecommender()
                 # Retrieve user preferences from database
                 if updated_user:
-                    recommended_products = recommender.get_user_preferences(updated_user)
-                    db.create_or_update_user(session_id=session_id, recommended_products=recommended_products)
-                    print(recommended_products)
+                    recommended_ingredients = recommender.get_user_preferences(updated_user)
+                    db.create_or_update_user(session_id=session_id, recommended_ingredients=recommended_ingredients)
+                    print(recommended_ingredients)
             except Exception as e:
                 print(request.form['ingredients_dish'])
                 print(f"Error: {e}")
