@@ -4,7 +4,7 @@ from .culinary_api.culinary_api import *
 from database import DatabaseManipulator
 from uuid import uuid4
 from .recommendation import AssociationRecommender
-from .mock_data import get_mock_dishes, get_mock_ingredients
+from .culinary_functions import examine_dishes
 
 culinary_bp = Blueprint('culinary', __name__, template_folder='templates', static_folder='static')
 db = DatabaseManipulator()
@@ -13,19 +13,16 @@ db = DatabaseManipulator()
 @culinary_bp.route('/', methods=['GET', 'POST'])
 def form_find():
     value = request.args.get('search-value')
-    #recipes = get_mock_dishes() # Use this line if you want to use mock dishes
     recipes = search_recipe(value)
-    print(recipes)
     session_id = session.get('session_id', str(uuid4()))
     session['session_id'] = session_id
 
-    user = db.find_user(session_id)
+    recommended_dishes = examine_dishes(user_id=session_id, db=db)
 
     if request.method == 'POST':
         if 'ingredients_dish' in request.form:
             try:
                 dish_ingredients = json.loads(request.form['ingredients_dish'].replace("'", '"'))
-                #dish_ingredients = get_mock_ingredients() # Use this line if you want to use mock ingredients
                 user_dish = {
                     'ingredients': [item['name'] for item in dish_ingredients[:8]],
                 }
@@ -43,7 +40,7 @@ def form_find():
 
     return render_template('html/index.html',
                            value=value,
-                           recipes=recipes)
+                           recipes=recipes, recommended_dishes=recommended_dishes)
 
 
 @culinary_bp.route('/dish/<string:dish_id>/', methods=['GET'])

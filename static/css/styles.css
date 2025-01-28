@@ -108,3 +108,71 @@ a.button:hover {
     color: #333;
     margin-bottom: 10px;
 }
+
+
+
+
+.recommended-section {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.recommended-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.recommended-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.recommended-item {
+    margin: 10px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.recommended-image {
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.recommended-image:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.recommended-text {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #555;
+}
+
+.recommended-item {
+    text-align: center;
+    text-decoration: none;
+    color: #333; /* Колір тексту */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.recommended-item a:hover{
+    text-decoration: none;
+}
+.recommended-item p {
+    max-width: 150px;
+    text-align: center;
+    margin: 0 auto;
+}
+.recommended-item a {
+    text-decoration: none;
+}

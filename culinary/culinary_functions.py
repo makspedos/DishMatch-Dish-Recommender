@@ -1,4 +1,18 @@
 import random
+from culinary.culinary_api.culinary_api import search_recipies_by_ingredients
+
+
+def examine_dishes(user_id, db):
+    user = db.find_user(user_id)
+    recommended_dishes = None
+    if user:
+        recommended_ingredients = user['recommended_ingredients']
+        if recommended_ingredients:
+            recommended_dishes = search_recipies_by_ingredients(recommended_ingredients, number=3)
+            #recommended_dishes = get_mock_dishes()[:3]
+            print(recommended_dishes)
+    return recommended_dishes
+
 
 def get_mock_dishes():
     list_of_dishes = [

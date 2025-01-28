@@ -14,10 +14,6 @@
                 </li>
             {% endfor %}
             </ol>
-            <p class="value">We also recommend you to examine</p>
-            <ol class="recommend-ol">
-                <li class="result-li"><p class="value">{{ value }}</p></li>
-            </ol>
             <a class="button" href="{{ url_for('culinary.form_find')}}">Return to the main page</a>
         </div>
     {% else %}
@@ -29,6 +25,22 @@
             <button class="btn btn-primary" type="submit">Find</button>
         </div>
     </form>
+        </br>
+        {% if recommended_dishes %}
+            <div class="recommended-section">
+                <h2 class="recommended-title">We also recommend these dishes</h2>
+                <ul class="recommended-list">
+                    {% for recipe in recommended_dishes %}
+                        <li class="recommended-item">
+                            <a href="{{ url_for('culinary.dish_page', dish_id=recipe.id) }}">
+                                <img src="{{ recipe.image }}" width="250"alt="{{ recipe.title }}" class="recommended-image">
+                                <p class="recommended-text">{{ recipe.title }}</p>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
     {% endif %}
 
 {% endblock %}
