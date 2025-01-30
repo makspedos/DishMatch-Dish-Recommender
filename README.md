@@ -55,5 +55,5 @@ By leveraging machine learning techniques, specifically the Apriori algorithm fr
 - **Spoonacular API**: External API service used for fetching dish-related data.
 - **MLxtend (Apriori Algorithm)**: Used for association rule learning in recommendations.
 - **MongoDB**: NoSQL database used for storing user preferred ingredients and based on it recommendations.
-- **Pytest** - Testing framework used for unit testing the application.
+- **Pytest**: Testing framework used for unit testing the application.
 - **HTML/CSS**: For front-end design.
