@@ -3,7 +3,8 @@ from culinary.variables import ENV_VARS
 
 API_KEY = ENV_VARS['API_KEY']
 
-def search_recipies_by_ingredients(query,number=5):
+
+def search_recipies_by_ingredients(query, number=5):
     url = f'https://api.spoonacular.com/recipes/findByIngredients'
     params = {
         'apiKey': API_KEY,
@@ -14,7 +15,7 @@ def search_recipies_by_ingredients(query,number=5):
         'ignorePantry': False,
     }
     try:
-        response = requests.get(url, params = params)
+        response = requests.get(url, params=params)
         response.raise_for_status()
         data = response.json()
         return data
@@ -28,9 +29,9 @@ def search_recipe(query, number=5):
         'apiKey': API_KEY,
         'query': query,
         'number': number,
-        'instructionRequired':True,
+        'instructionRequired': True,
         'addRecipeInformation': True,
-        'fillIngredients':True,
+        'fillIngredients': True,
     }
     try:
         response = requests.get(url, params=params)
@@ -41,11 +42,12 @@ def search_recipe(query, number=5):
         print(f'Error {e}')
         return []
 
+
 def get_recipe_by_id(id):
     url = f'https://api.spoonacular.com/recipes/{id}/information'
     params = {
         'apiKey': API_KEY,
-        'includeNutrition':False,
+        'includeNutrition': False,
     }
     try:
         response = requests.get(url, params=params)
@@ -60,7 +62,7 @@ def get_recipe_by_id(id):
                 for ing in data.get("extendedIngredients", [])
             }),
             "image": data.get("image"),
-            "dish_type":data.get("dishTypes"),
+            "dish_type": data.get("dishTypes"),
         }
         recipe_details['ingredients'] = [
             {
@@ -75,4 +77,3 @@ def get_recipe_by_id(id):
     except Exception as e:
         print(f'Error {e}')
         return None
-
